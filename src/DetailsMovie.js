@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 
 class DetailsMovie extends React.Component {
@@ -40,11 +41,12 @@ class DetailsMovie extends React.Component {
                     <h1>Details</h1>
                 </header>
                 <ul>
-                    <li className = 'detailsTitle'>Title: {this.state.movie.title}</li>
+                    <li className = 'detailsTitle'>{this.state.movie.title}</li>
                     <li className = 'detailsDirector'>Director: {this.state.movie.director}</li>
                     <li className = 'detailsRating'>Rating: {this.state.movie.rating}</li>
                     <li className = 'detailsDescription'>Description: {this.state.movie.description}</li>
                 </ul>
+                <button className = 'detailsEdit' ><Link to={'/editMovie/' + this.state.movie.id}>Edit</Link></button>
             </div>
         )
     }

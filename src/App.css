@@ -4,7 +4,7 @@
 
 .App {
   text-align: center;
-  width: 70vw;
+  width: 60vw;
   margin: auto;
 }
 
@@ -16,15 +16,20 @@ body{
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-}
-
-.detailsTitle{
-  font-size: 40px;
-  font-weight: bold;
+  justify-content: center;
+  align-items: center;
 }
 
 .detailsContainer h2{
   font-size: 50px;
+}
+
+.detailsEdit{
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  background-color: #C5BBBC;
 }
 
 .detailsTitle{
@@ -40,8 +45,6 @@ body{
 .formContainer{
   margin-top: 85px;
 }
-
-
 
 #inputTitle, #inputDirector, #inputRating, #inputDescription, .submitBtn{
   margin: 10px;
@@ -90,7 +93,7 @@ div textarea{
 }
 
 table {
-  width: 100%;
+  width: 60vw;
   border-collapse: collapse;
   margin: auto;
   margin-top: 30px;
