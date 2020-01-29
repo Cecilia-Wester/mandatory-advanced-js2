@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 
 class AddMovie extends React.Component {
     constructor(props){
@@ -16,25 +16,9 @@ class AddMovie extends React.Component {
         }
     }
 
-    onSubmit=(e)=>{
-        e.preventDefault();
-        axios.post('http://3.120.96.16:3001/movies', {
-            title: this.state.title, 
-            director: this.state.director, 
-            rating: this.state.rating, 
-            description: this.state.description
-        })
-        .then (() => {
-            this.setState({redirect: true})
-        })
-        .catch((error) => {
-            this.setState({error: true})
-        })
-    }
-
-    onChangeTitle=(e)=>{
-        this.setState({title: e.target.value});
-    }
+    onChangeDescription=(e)=>{
+        this.setState({description: e.target.value});
+    } 
 
     onChangeDirector=(e)=>{
         this.setState({director: e.target.value});
@@ -44,8 +28,24 @@ class AddMovie extends React.Component {
         this.setState({rating: e.target.value});
     }
 
-    onChangeDescription=(e)=>{
-        this.setState({description: e.target.value});
+    onChangeTitle=(e)=>{
+        this.setState({title: e.target.value});
+    }
+
+    onSubmit=(e)=>{
+        e.preventDefault();
+        axios.post('http://3.120.96.16:3001/movies', {
+            title: this.state.title, 
+            director: this.state.director, 
+            rating: this.state.rating, 
+            description: this.state.description
+        })
+        .then(() => {
+            this.setState({redirect: true})
+        })
+        .catch((error) => {
+            this.setState({error: true})
+        });
     }
 
     render(){
@@ -60,9 +60,13 @@ class AddMovie extends React.Component {
                 <Helmet>
                     <title>Add movie</title>
                 </Helmet>
-                <div>
+                <header>
+                    <h1>Add a new movie</h1>
+                </header>
+                <div className = 'formContainer'>
                     <form onSubmit={this.onSubmit}>
-                        <label>Enter title:
+                        <div>
+                            <p>Enter title: </p>  
                             <input 
                                 placeholder='Title' 
                                 id = 'inputTitle' 
@@ -72,19 +76,22 @@ class AddMovie extends React.Component {
                                 maxLength='40'
                                 required 
                             /><br />
-                        </label>
-                        <label>Enter director:</label>
+                        </div>
+                        <div>
+                            <p>Enter director: </p>
                         <input 
-                            type='text'
-                            placeholder='Director' 
-                            id='inputDirector' 
-                            onChange = {this.onChangeDirector} 
-                            director ={this.state.director} 
-                            minLength='1'
-                            maxLength='40'
-                            required
-                        /><br />
-                        <label>Enter rating:
+                                type='text'
+                                placeholder='Director' 
+                                id='inputDirector' 
+                                onChange = {this.onChangeDirector} 
+                                director ={this.state.director} 
+                                minLength='1'
+                                maxLength='40'
+                                required
+                            /><br />
+                        </div>
+                        <div>
+                            <p>Enter rating: </p>
                             <input 
                                 type='number'
                                 placeholder='Rating' 
@@ -96,8 +103,9 @@ class AddMovie extends React.Component {
                                 step='0.1'
                                 required
                             /><br />
-                        </label>
-                        <label>Movie description</label>
+                        </div>
+                        <div>
+                            <p>Movie description: </p>
                             <textarea 
                                 type='text'
                                 placeholder='Description' 
@@ -108,7 +116,8 @@ class AddMovie extends React.Component {
                                 maxLength='300'
                                 required>
                             </textarea><br />
-                        <button type='submit'>Submit</button>
+                        </div>
+                        <button type='submit' className = 'submitBtn'>Submit</button>
                     </form>
                 </div>
             </div>

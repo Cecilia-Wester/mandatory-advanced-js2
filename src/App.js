@@ -11,9 +11,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <header>
-          
-        </header>
         <Router>
           <Navbar />
             <Route exact path='/' component={Main} />

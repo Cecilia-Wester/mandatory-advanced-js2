@@ -1,6 +1,10 @@
+*{
+  font-family: 'Raleway', sans-serif;
+}
+
 .App {
   text-align: center;
-  width: 80vw;
+  width: 70vw;
   margin: auto;
 }
 
@@ -8,15 +12,39 @@ body{
   width: 100vw;
 }
 
-table {
-  border-collapse: collapse;
-  width: 80vw;
-  margin: auto;
+.detailsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-table th, td{
-  padding:10px;
-  border: 2px solid black;
+.detailsTitle{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.detailsContainer h2{
+  font-size: 50px;
+}
+
+.detailsTitle{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.Edit:hover, .Details:hover, .Delete:hover{
+  background-color: #B30707;
+  color: #C5BBBC;
+}
+
+.formContainer{
+  margin-top: 85px;
+}
+
+
+
+#inputTitle, #inputDirector, #inputRating, #inputDescription, .submitBtn{
+  margin: 10px;
 }
 
 .links {
@@ -25,11 +53,63 @@ table th, td{
   align-items: center;
 }
 
-.navBar{
-  background-image: url('https://images.unsplash.com/photo-1543536448-1e76fc2795bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80');
+.navbar{
+  background-image: url('movie.jpg');
   background-repeat: no-repeat;
-  height: 200px;
+  height: 250px;
   background-position: center;
+  padding-top: 10px;
 }
 
+.navbar h1{
+  margin: 0px;
+  font-size: 60px;
+  padding-top: 20px;
+}
 
+.navbar .links a{
+  color: aliceblue;
+  font-size: 30px;
+}
+
+div input, .inputSearch{
+  width: 200px;
+  height: 20px;
+}
+
+div textarea{
+  width: 200px;
+}
+
+.links a:hover{
+  color: #B30707;
+}
+
+.tableTitle:hover{
+  color: #B30707;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 30px;
+}
+
+table th, td{
+  padding: 10px;
+  border: 2px solid black;
+}
+
+tr:nth-child(2n){
+  background-color: #C5BBBC;
+}
+
+ul {
+  padding-left: 0px
+}
+
+ul li{
+  list-style: none;
+  padding-top: 20px;
+}

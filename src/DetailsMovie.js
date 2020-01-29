@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+
 
 class DetailsMovie extends React.Component {
     constructor(props){
@@ -14,7 +14,6 @@ class DetailsMovie extends React.Component {
 
     componentDidMount=()=>{
         let id = this.props.match.params.id;
-        console.log(id)
         axios
         .get('http://3.120.96.16:3001/movies/' + id)
         .then ((resp) => {
@@ -25,25 +24,26 @@ class DetailsMovie extends React.Component {
         })
         .catch((error) => {
             this.setState({error: true})
-            console.log(error);
-        })
+        });
     }
-    
+
     render(){
         if(this.state.error){
             return <p>Ooops, something went wrong. The movie has been removed by another user.</p>
         }
         return(
-            <div>
+            <div className = 'detailsContainer'>
                 <Helmet>
-                    <title>Movie info</title>
+                    <title>Details</title>
                 </Helmet>
-                <h2>Details</h2>
+                <header>
+                    <h1>Details</h1>
+                </header>
                 <ul>
-                    <li>{this.state.movie.title}</li>
-                    <li>{this.state.movie.director}</li>
-                    <li>{this.state.movie.rating}</li>
-                    <li>{this.state.movie.description}</li>
+                    <li className = 'detailsTitle'>Title: {this.state.movie.title}</li>
+                    <li className = 'detailsDirector'>Director: {this.state.movie.director}</li>
+                    <li className = 'detailsRating'>Rating: {this.state.movie.rating}</li>
+                    <li className = 'detailsDescription'>Description: {this.state.movie.description}</li>
                 </ul>
             </div>
         )

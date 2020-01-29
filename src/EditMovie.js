@@ -19,12 +19,9 @@ class EditMovie extends React.Component {
     
     componentDidMount=()=>{
         let id = this.props.match.params.id;
-        console.log(id)
-        axios
-        .get('http://3.120.96.16:3001/movies/' + id)
+        axios.get('http://3.120.96.16:3001/movies/' + id)
         .then ((resp) => {
             let movie = resp.data
-            console.log(movie)
             if(movie){
                 this.setState({ 
                     id: movie.id,
@@ -39,6 +36,22 @@ class EditMovie extends React.Component {
             this.setState({error: true})
             
         })
+    }
+
+    onChangeDescription=(e)=>{
+        this.setState({description: e.target.value});
+    }
+
+    onChangeDirector=(e)=>{
+        this.setState({director: e.target.value});
+    }
+
+    onChangeRating=(e)=>{
+        this.setState({rating: e.target.value});
+    }
+    
+    onChangeTitle=(e)=>{
+        this.setState({title: e.target.value});
     }
 
     onSubmit=(e)=>{
@@ -62,23 +75,6 @@ class EditMovie extends React.Component {
         });
     }
 
-    onChangeTitle=(e)=>{
-                this.setState({title: e.target.value});
-    }
-
-    onChangeDirector=(e)=>{
-        this.setState({director: e.target.value});
-        console.log(this.state.movie.director)
-    }
-
-    onChangeRating=(e)=>{
-        this.setState({rating: e.target.value});
-    }
-
-    onChangeDescription=(e)=>{
-        this.setState({description: e.target.value});
-    }
-
     render(){
         if(this.state.redirect){
             return <Redirect to = '/' />
@@ -91,54 +87,63 @@ class EditMovie extends React.Component {
                 <Helmet>
                     <title>Edit movie</title>
                 </Helmet>
-                <form onSubmit={this.onSubmit}>
-                    <label>Enter title:
-                        <input 
-                            id = 'inputTitle' 
-                            type = 'text' 
-                            onChange = {this.onChangeTitle} 
-                            value={this.state.title}
-                            minLength='1'
-                            maxLength='40'
-                            required
-                        /><br />
-                    </label>
-                    <label>Enter director:
-                        <input 
-                            id = 'inputDirector' 
-                            type = 'text' 
-                            onChange = {this.onChangeDirector} 
-                            value ={this.state.director} 
-                            minLength='1'
-                            maxLength='40'
-                            required
-                        /><br />
-                    </label>
-                    <label>Enter rating:
-                        <input 
-                            id = 'inputRating' 
-                            type = 'number' 
-                            onChange = {this.onChangeRating} 
-                            value= {this.state.rating} 
-                            min = '0'
-                            max = '5'
-                            step = '0.1'
-                            required
-                        /><br />
-                    </label>
-                    <label >Movie description:
-                        <textarea 
-                            id = 'inputDescription' 
-                            type = 'text' 
-                            onChange = {this.onChangeDescription} 
-                            value={this.state.description}
-                            minLength= '1'
-                            maxLength= '300'
-                            required>
-                        </textarea><br />
-                    </label>
-                    <button type='submit'>Submit</button>
-                </form>
+                <header>
+                    <h1>Edit movie</h1>
+                </header>
+                <div className = 'formContainer'>
+                    <form onSubmit={this.onSubmit}>
+                        <div>
+                            <p>Enter title:</p>
+                            <input 
+                                id = 'inputTitle' 
+                                type = 'text' 
+                                onChange = {this.onChangeTitle} 
+                                value={this.state.title}
+                                minLength='1'
+                                maxLength='40'
+                                required
+                            /><br />
+                        </div>
+                        <div>
+                            <p>Enter director:</p>
+                            <input 
+                                id = 'inputDirector' 
+                                type = 'text' 
+                                onChange = {this.onChangeDirector} 
+                                value ={this.state.director} 
+                                minLength='1'
+                                maxLength='40'
+                                required
+                            /><br />
+                        </div>
+                        <div>
+                            <p>Enter rating:</p>
+                            <input 
+                                id = 'inputRating' 
+                                type = 'number' 
+                                onChange = {this.onChangeRating} 
+                                value= {this.state.rating} 
+                                min = '0'
+                                max = '5'
+                                step = '0.1'
+                                required
+                            /><br />
+                        </div>
+                        <div>
+                            <p>Movie description:</p>
+                            <textarea 
+                                id = 'inputDescription' 
+                                type = 'text' 
+                                onChange = {this.onChangeDescription} 
+                                value={this.state.description}
+                                minLength= '1'
+                                maxLength= '300'
+                                required>
+                            </textarea><br />
+                        </div>
+                        <button type='submit' className = 'submitBtn'>Submit</button>
+                    </form>
+                </div>
             </div>
         )
     }
